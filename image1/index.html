@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebP Image Compression</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="p-8">
+    <div class="flex  items-center mb-2">
+        <h1 class="text-2xl font-bold ">Task 1</h1>
+        <a href="../index.html" class="text-2xl text-blue-500 ml-10">Inici</a>
+      </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+        <table class="table-auto border-collapse">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2">logotip.png (original)</th>
+                    <th class="py-2">logotip.jpg</th>
+                    <th class="py-2">logotip.webp</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Image 1 -->
+                <tr>
+                    <td class="border py-2">
+                        <img src="../images/logotip.png" height="400" width="400">
+                    </td>
+                    <td class="border py-2">
+                        <img src="logotip.jpg" height="400" width="400">
+                    </td>
+                    <td class="border py-2">
+                        <img src="logotip.webp" height="400" width="400">
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <script>
+        function calculateSavingPercentage(originalSize, newSize) {
+            return ((originalSize - newSize) / originalSize * 100).toFixed(2);
+        }
+
+        const imageData = [
+            { name: "Image1", originalSize: 293.4, jpgSize: 115.7, webpSize: 154.2},
+        ];
+
+        window.onload = function () {
+            const tableBody = document.querySelector("tbody");
+
+            imageData.forEach(image => {
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <th class="border py-2 bg-gray-200">${image.originalSize} kB</th>
+                    <th class="border py-2 bg-gray-200">${image.jpgSize} kB, (Saving ${calculateSavingPercentage(image.originalSize, image.jpgSize)}%)</th>
+                    <th class="border py-2 bg-gray-200">${image.webpSize} kB, (Saving ${calculateSavingPercentage(image.originalSize, image.webpSize)}%)</th>
+                `;
+                tableBody.appendChild(newRow);
+            });
+        };
+    </script>
+
+</body>
+
+
+
+</html>
